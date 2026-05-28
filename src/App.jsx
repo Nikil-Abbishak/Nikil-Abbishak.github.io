@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import Lenis from 'lenis';
 import SplashCursor from './components/SplashCursor';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
@@ -6,7 +7,6 @@ import ScrollProgress from './components/ScrollProgress';
 import NoiseOverlay from './components/NoiseOverlay';
 import Hero from './sections/Hero';
 import About from './sections/About';
-import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
 import Contact from './sections/Contact';
@@ -36,6 +36,34 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
 
   const handleLoaded = useCallback(() => setLoaded(true), []);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    const bg1 = document.querySelector('.bg-shape-1');
+    const bg2 = document.querySelector('.bg-shape-2');
+
+    lenis.on('scroll', ({ scroll }) => {
+      if (bg1) bg1.style.transform = `translateY(${scroll * 0.2}px)`;
+      if (bg2) bg2.style.transform = `translateY(${scroll * -0.15}px)`;
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   // Konami Code Easter Egg
   useEffect(() => {
@@ -71,7 +99,6 @@ export default function App() {
 
       <Hero />
       <About />
-      <Skills />
       <Projects />
       <Experience />
       <Contact />

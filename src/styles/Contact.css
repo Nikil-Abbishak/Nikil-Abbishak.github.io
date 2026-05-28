@@ -119,6 +119,24 @@
 
 .form-group {
   margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.form-group::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(0.85, 0, 0.15, 1), left 0.4s cubic-bezier(0.85, 0, 0.15, 1);
+  pointer-events: none;
+}
+
+.form-group:focus-within::after {
+  width: 100%;
+  left: 0;
 }
 
 .form-group label {
@@ -147,8 +165,9 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(123, 97, 255, 0.08);
+  border-color: transparent;
+  box-shadow: 0 5px 20px rgba(123, 97, 255, 0.1);
+  background: rgba(123, 97, 255, 0.05);
 }
 
 .form-group textarea {
@@ -164,6 +183,25 @@
 .contact-submit {
   width: 100%;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-25deg);
+  animation: shimmerBtn 4s infinite;
+}
+
+@keyframes shimmerBtn {
+  0% { left: -150%; }
+  30%, 100% { left: 200%; }
 }
 
 .contact-submit:disabled {

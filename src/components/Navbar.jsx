@@ -1,43 +1,39 @@
 import { useState, useEffect } from 'react';
+import useMagnetic from '../hooks/useMagnetic';
 import '../styles/Navbar.css';
 
 const links = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'hero', number: '01', label: 'Home' },
+  { id: 'about', number: '02', label: 'Real Me' },
+  { id: 'projects', number: '03', label: 'Portfolio' },
+  { id: 'experience', number: '04', label: 'Resume' },
+  { id: 'contact', number: '05', label: 'Contact' },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const magneticRef = useMagnetic(0.3);
 
+  // Prevent scrolling when menu is open
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 80);
-      const scrollY = window.scrollY + 200;
-      for (const link of links) {
-        const el = document.getElementById(link.id);
-        if (el && scrollY >= el.offsetTop && scrollY < el.offsetTop + el.offsetHeight) {
-          setActiveSection(link.id);
-          return;
-        }
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const handleNavClick = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
   };
 
   return (
     <>
-      <nav className={`nav ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation">
+      <div className="nav-top-bar">
         <a
           href="#hero"
           className="nav-logo"
@@ -45,47 +41,47 @@ export default function Navbar() {
         >
           nikil<span className="logo-dot">.</span>
         </a>
+      </div>
 
-        <ul className="nav-links">
-          {links.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.id); }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <button
+        ref={magneticRef}
+        className={`menu-toggle ${menuOpen ? 'active' : ''}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span /><span /><span />
+      </button>
 
-        <a href="#contact" className="nav-cta" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>
-          Let's Talk
-        </a>
+      <div className={`full-menu ${menuOpen ? 'open' : ''}`} role="dialog">
+        <div className="full-menu-inner">
+          <ul className="full-menu-links">
+            {links.map((link, i) => (
+              <li key={link.id} className="full-menu-item" style={{ transitionDelay: `${0.1 + i * 0.1}s` }}>
+                <a
+                  href={`#${link.id}`}
+                  className="full-menu-link group"
+                  onClick={(e) => { e.preventDefault(); handleNavClick(link.id); }}
+                >
+                  <span className="full-menu-number">{link.number}</span>
+                  <span className="full-menu-label">
+                    {link.label}
+                    <span className="full-menu-underline"></span>
+                  </span>
+                  <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="full-menu-arrow" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        <button
-          className={`hamburger ${menuOpen ? 'active' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          <span /><span /><span />
-        </button>
-      </nav>
-
-      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} role="dialog" aria-label="Mobile navigation">
-        {links.map((link, i) => (
-          <a
-            key={link.id}
-            href={`#${link.id}`}
-            className="mobile-link"
-            style={{ transitionDelay: `${0.05 + i * 0.06}s` }}
-            onClick={(e) => { e.preventDefault(); handleNavClick(link.id); }}
-          >
-            {link.label}
-          </a>
-        ))}
+          <div className="full-menu-footer">
+            <span>Nikil Abbishak</span>
+            <div className="full-menu-socials">
+              <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="mailto:email@example.com">Email</a>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -34,7 +34,9 @@ export default function Experience() {
   return (
     <section className="section" id="experience" ref={sectionRef}>
       <div className="section-header reveal">
-        <h2 className="section-title">Experience</h2>
+        <h2 className="section-title">
+          <span className="reveal-mask"><span className="text-inner">Experience</span></span>
+        </h2>
         <p className="section-subtitle">The milestones that shaped my journey.</p>
       </div>
 

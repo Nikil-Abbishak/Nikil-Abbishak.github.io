@@ -7,7 +7,7 @@ export default function Hero() {
   const photoRef = useRef(null);
   const [photoUrl, setPhotoUrl] = useState(null);
 
-  // Check if profile photo exists (supports multiple formats)
+  // Check if profile photo exists
   useEffect(() => {
     const extensions = ['jpg', 'png', 'webp', 'jpeg'];
     let resolved = false;
@@ -25,75 +25,69 @@ export default function Hero() {
     });
   }, []);
 
-  // Parallax float on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (photoRef.current) {
-        const y = window.scrollY * 0.08;
-        photoRef.current.style.transform = `translateY(${y}px)`;
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <section className="hero" id="hero" ref={sectionRef}>
-      <div className="hero-grid">
-        <div className="hero-text">
-          <p className="hero-greeting reveal">Hi, I'm</p>
-          <h1 className="hero-name">
-            <span className="hero-name-line reveal" style={{ transitionDelay: '0.1s' }}>
-              <span className="gradient-text">Nikil</span>
-            </span>
-            <span className="hero-name-line reveal" style={{ transitionDelay: '0.2s' }}>
-              Abbishak<span className="hero-name-dot">.</span>
-            </span>
-          </h1>
-          <p className="hero-role reveal" style={{ transitionDelay: '0.35s' }}>
-            Fullstack Developer — building performant apps with React, Flutter, Java & Python.
-          </p>
-          <div className="hero-actions reveal" style={{ transitionDelay: '0.5s' }}>
-            <a
-              href="#projects"
-              className="btn btn-primary"
-              onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }}
-            >
-              View Projects <span className="btn-arrow">→</span>
-            </a>
-            <a
-              href="#contact"
-              className="btn btn-outline"
-              onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-            >
-              Get In Touch
-            </a>
+      <div className="hero-container">
+        {/* Left Side Indicator */}
+        <div className="hero-indicator">
+          <span className="hero-indicator-text">CS Undergrad</span>
+          <div className="hero-indicator-line"></div>
+          <span className="hero-indicator-text">Present</span>
+        </div>
+
+        {/* Center Content */}
+        <div className="hero-content">
+          <div className="hero-text-wrapper">
+            <h1 className="hero-title">Hello</h1>
+            <div className="hero-subtitle-container">
+              <p className="hero-subtitle">-It’s Nikil Abbishak</p>
+            </div>
+            
+            <div className="hero-socials">
+              <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="mailto:email@example.com" aria-label="Email">
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+          
+          <div className="hero-scroll-hint-new">
+            <span>Scroll Down ↓</span>
           </div>
         </div>
 
-        <div className="hero-photo-wrapper reveal" style={{ transitionDelay: '0.3s' }}>
-          <div className="hero-photo-frame" ref={photoRef}>
-            <div className="hero-photo-border" />
-            {photoUrl ? (
-              <img
-                src={photoUrl}
-                alt="Nikil Abbishak"
-                className="hero-photo"
-                loading="eager"
-              />
-            ) : (
-              <div className="hero-photo-placeholder">
-                <span>NA</span>
-              </div>
-            )}
-          </div>
-          <div className="hero-photo-glow" aria-hidden="true" />
+        {/* Right Photo */}
+        <div className="hero-photo-wrapper-new" ref={photoRef}>
+          {photoUrl ? (
+            <img src={photoUrl} alt="Nikil Abbishak" className="hero-photo-new" />
+          ) : (
+            <div className="hero-photo-placeholder-new">
+              <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-muted)' }}>
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          )}
         </div>
       </div>
-
-      <div className="hero-scroll-hint reveal" style={{ transitionDelay: '0.7s' }} aria-hidden="true">
-        <div className="scroll-line" />
-        <span>scroll</span>
+      
+      {/* Tech Stack Marquee */}
+      <div className="hero-marquee-container">
+        <div className="hero-marquee">
+          <div className="hero-marquee-content">
+            {['React', 'Next.js', 'Node.js', 'TypeScript', 'TailwindCSS', 'Python', 'Java', 'Flutter', 'React', 'Next.js', 'Node.js', 'TypeScript', 'TailwindCSS', 'Python', 'Java', 'Flutter'].map((tech, idx) => (
+              <div key={idx} className="marquee-item">
+                <span className="marquee-dot"></span>
+                <span className="marquee-text">{tech}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

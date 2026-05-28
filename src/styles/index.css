@@ -122,6 +122,25 @@ ul { list-style: none; }
   transform: translateY(0);
 }
 
+/* ── Editorial Text Masking ── */
+.reveal-mask {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.reveal-mask .text-inner {
+  display: block;
+  transform: translateY(110%) rotate(2deg);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left top;
+}
+
+.reveal.visible .text-inner,
+.reveal-mask.visible .text-inner {
+  transform: translateY(0) rotate(0);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    BUTTONS — Clean, minimal
    ═══════════════════════════════════════════════════════════════ */

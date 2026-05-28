@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
+import useMagnetic from '../hooks/useMagnetic';
 import '../styles/Contact.css';
 
 export default function Contact() {
   const sectionRef = useScrollReveal();
+  const submitBtnRef = useMagnetic(0.15);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -69,6 +71,7 @@ export default function Contact() {
             <textarea id="contactMessage" placeholder="Tell me about your project..." rows="5" required />
           </div>
           <button
+            ref={submitBtnRef}
             type="submit"
             className="btn btn-primary contact-submit"
             disabled={submitted}

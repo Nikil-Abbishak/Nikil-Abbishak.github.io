@@ -23,7 +23,14 @@
   border: 2px solid var(--text-muted);
   flex-shrink: 0;
   margin-top: 6px;
-  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s var(--ease-spring);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: dotPulse 3s infinite;
+}
+
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(123, 97, 255, 0.2); }
+  70% { box-shadow: 0 0 0 10px rgba(123, 97, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(123, 97, 255, 0); }
 }
 
 .timeline-item:hover .timeline-dot {
@@ -35,8 +42,16 @@
 .timeline-line {
   width: 1px;
   flex: 1;
-  background: linear-gradient(to bottom, var(--border-subtle), transparent);
   margin-top: 0.5rem;
+  background: linear-gradient(to bottom, var(--border-subtle) 0%, var(--accent) 50%, var(--border-subtle) 100%);
+  background-size: 100% 200%;
+  animation: lineFlow 4s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes lineFlow {
+  0% { background-position: 0 -100%; }
+  100% { background-position: 0 100%; }
 }
 
 .timeline-card {
