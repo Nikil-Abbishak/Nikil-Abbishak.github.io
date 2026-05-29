@@ -6,6 +6,8 @@ export default function useMagnetic(strength = 0.2) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
 
     const handleMouseMove = (e) => {
       const rect = el.getBoundingClientRect();

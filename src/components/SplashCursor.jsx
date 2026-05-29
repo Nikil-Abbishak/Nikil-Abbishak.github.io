@@ -21,6 +21,8 @@ export default function SplashCursor({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
 
     let isActive = true;
 
@@ -41,7 +43,7 @@ export default function SplashCursor({
       SIM_RESOLUTION, DYE_RESOLUTION, DENSITY_DISSIPATION, VELOCITY_DISSIPATION,
       PRESSURE, PRESSURE_ITERATIONS, CURL, SPLAT_RADIUS, SPLAT_FORCE,
       SHADING, COLOR_UPDATE_SPEED, PAUSED: false,
-      BACK_COLOR, TRANSPARENT, RAINBOW_MODE: true,
+      BACK_COLOR, TRANSPARENT,
     };
 
     let pointers = [new pointerPrototype()];
@@ -562,20 +564,37 @@ export default function SplashCursor({
     function correctDeltaX(d) { let a = canvas.width/canvas.height; if (a < 1) d *= a; return d; }
     function correctDeltaY(d) { let a = canvas.width/canvas.height; if (a > 1) d /= a; return d; }
 
-    function generateColor() {
-      let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-      c.r *= 0.15; c.g *= 0.15; c.b *= 0.15; return c;
+    function parseRgbTriplet(value) {
+      if (!value) return null;
+      const parts = value.split(',').map((part) => Number(part.trim()));
+      if (parts.length < 3 || parts.some((part) => Number.isNaN(part))) return null;
+      return { r: parts[0] / 255, g: parts[1] / 255, b: parts[2] / 255 };
     }
 
-    function HSVtoRGB(h, s, v) {
-      let r,g,b,i,f,p,q,t;
-      i = Math.floor(h*6); f = h*6-i; p = v*(1-s); q = v*(1-f*s); t = v*(1-(1-f)*s);
-      switch(i%6) {
-        case 0: r=v;g=t;b=p; break; case 1: r=q;g=v;b=p; break;
-        case 2: r=p;g=v;b=t; break; case 3: r=p;g=q;b=v; break;
-        case 4: r=t;g=p;b=v; break; case 5: r=v;g=p;b=q; break;
-      }
-      return { r, g, b };
+    function getThemePalette() {
+      const styles = getComputedStyle(document.documentElement);
+      const accentRaw = styles.getPropertyValue('--accent-rgb').trim();
+      const warmRaw = styles.getPropertyValue('--accent-warm-rgb').trim();
+      const accentFallback = { r: 103 / 255, g: 232 / 255, b: 249 / 255 };
+      const warmFallback = { r: 251 / 255, g: 191 / 255, b: 36 / 255 };
+      return {
+        accent: parseRgbTriplet(accentRaw) || accentFallback,
+        warm: parseRgbTriplet(warmRaw) || warmFallback,
+        white: { r: 1, g: 1, b: 1 },
+        black: { r: 0.06, g: 0.06, b: 0.06 },
+      };
+    }
+
+    function generateColor() {
+      const { accent, warm, white, black } = getThemePalette();
+      const palette = [accent, warm, white, black];
+      const base = palette[Math.floor(Math.random() * palette.length)];
+      const intensity = base === white ? 0.08 + Math.random() * 0.06 : 0.12 + Math.random() * 0.08;
+      return {
+        r: base.r * intensity,
+        g: base.g * intensity,
+        b: base.b * intensity,
+      };
     }
 
     function wrap(v, min, max) { const r = max-min; if (r===0) return min; return ((v-min)%r)+min; }

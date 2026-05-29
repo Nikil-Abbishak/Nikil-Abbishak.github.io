@@ -6,7 +6,7 @@ export default function ScrollProgress() {
   useEffect(() => {
     const onScroll = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      setWidth((window.scrollY / total) * 100);
+      setWidth(total > 0 ? (window.scrollY / total) * 100 : 0);
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -14,12 +14,8 @@ export default function ScrollProgress() {
 
   return (
     <div
-      style={{
-        position: 'fixed', top: 0, left: 0, height: '3px',
-        background: 'var(--gradient-1)', zIndex: 10000,
-        width: `${width}%`, borderRadius: '0 2px 2px 0',
-        transition: 'width 0.1s linear',
-      }}
+      className="scroll-progress"
+      style={{ width: `${width}%` }}
       role="progressbar"
       aria-label="Page scroll progress"
     />

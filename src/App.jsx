@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import Lenis from 'lenis';
 import SplashCursor from './components/SplashCursor';
+import MouseGlow from './components/MouseGlow';
+import PhotoTheme from './components/PhotoTheme';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
@@ -9,6 +11,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
+import Skills from './sections/Skills';
 import Contact from './sections/Contact';
 import './styles/Footer.css';
 
@@ -18,15 +21,24 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <div className="footer-copy">
-          © 2026 <span className="accent">Nikil Abbishak</span>
+        <div className="footer-brand">
+          <div className="footer-logo">nikil<span className="footer-dot">.</span></div>
+          <p className="footer-tagline">Crafting cinematic web experiences and resilient products.</p>
+          <div className="footer-meta">© 2026 Nikil Abbishak</div>
         </div>
-        <button className="back-to-top" onClick={scrollToTop} aria-label="Back to top">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 19V5M5 12l7-7 7 7" />
-          </svg>
-          Back to top
-        </button>
+        <div className="footer-actions">
+          <div className="footer-links">
+            <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="mailto:email@example.com">Email</a>
+          </div>
+          <button className="back-to-top" onClick={scrollToTop} aria-label="Back to top">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+            Back to top
+          </button>
+        </div>
       </div>
     </footer>
   );
@@ -88,12 +100,15 @@ export default function App() {
     <>
       {!loaded && <Loader onComplete={handleLoaded} />}
 
+      <PhotoTheme />
+      <MouseGlow />
       <SplashCursor />
       <ScrollProgress />
       <NoiseOverlay />
       <Navbar />
 
       {/* Atmospheric background */}
+      <div className="ambient-grid" aria-hidden="true" />
       <div className="bg-shape bg-shape-1" aria-hidden="true" />
       <div className="bg-shape bg-shape-2" aria-hidden="true" />
 
@@ -101,6 +116,7 @@ export default function App() {
       <About />
       <Projects />
       <Experience />
+      <Skills />
       <Contact />
       <Footer />
     </>

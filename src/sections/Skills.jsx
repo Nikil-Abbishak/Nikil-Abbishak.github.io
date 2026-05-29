@@ -2,7 +2,6 @@ import { useRef, useCallback } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import '../styles/Skills.css';
 
-/* Real SVG paths for each technology */
 const skills = [
   {
     name: 'Java',
@@ -121,7 +120,7 @@ export default function Skills() {
     const y = e.clientY - rect.top;
     const rX = ((y - rect.height / 2) / rect.height) * 8;
     const rY = ((rect.width / 2 - x) / rect.width) * 8;
-    card.style.transform = `perspective(600px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.02)`;
+    card.style.transform = `perspective(700px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-6px)`;
   }, []);
 
   const handleMouseLeave = useCallback((i) => {
@@ -131,28 +130,44 @@ export default function Skills() {
   }, []);
 
   return (
-    <section className="section" id="skills" ref={sectionRef}>
-      <div className="section-header reveal">
+    <section className="section skills" id="skills" ref={sectionRef}>
+      <div className="section-header reveal slide-left">
         <h2 className="section-title">Skills</h2>
-        <p className="section-subtitle">Technologies I work with.</p>
+        <p className="section-subtitle">A toolkit built for modern product experiences.</p>
       </div>
 
-      <div className="skills-grid">
-        {skills.map((skill, i) => (
-          <div
-            key={skill.name}
-            className="skill-item reveal"
-            style={{ transitionDelay: `${0.05 + i * 0.04}s` }}
-            ref={(el) => (cardRefs.current[i] = el)}
-            onMouseMove={(e) => handleMouseMove(e, i)}
-            onMouseLeave={() => handleMouseLeave(i)}
-          >
-            <div className="skill-icon" style={{ color: skill.color }}>
-              {skill.svg}
+      <div className="skills-layout">
+        <div className="skills-grid">
+          {skills.map((skill, i) => (
+            <div
+              key={skill.name}
+              className="skill-item reveal"
+              style={{ transitionDelay: `${0.05 + i * 0.04}s` }}
+              ref={(el) => (cardRefs.current[i] = el)}
+              onMouseMove={(e) => handleMouseMove(e, i)}
+              onMouseLeave={() => handleMouseLeave(i)}
+            >
+              <div className="skill-icon" style={{ color: skill.color }}>
+                {skill.svg}
+              </div>
+              <span className="skill-name">{skill.name}</span>
             </div>
-            <span className="skill-name">{skill.name}</span>
+          ))}
+        </div>
+
+        <aside className="skills-panel reveal slide-right">
+          <h3>Toolbox Philosophy</h3>
+          <p>
+            I choose tools that keep teams fast, interfaces polished, and codebases resilient. The stack changes, the
+            craft stays.
+          </p>
+          <div className="skills-highlights">
+            <span>Motion-driven UI</span>
+            <span>Component systems</span>
+            <span>Performance first</span>
+            <span>Design collaboration</span>
           </div>
-        ))}
+        </aside>
       </div>
     </section>
   );
