@@ -76,6 +76,8 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 html::-webkit-scrollbar { width: 5px; }
@@ -91,6 +93,7 @@ body {
     var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
+  width: 100%;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -144,11 +147,13 @@ ul { list-style: none; }
   transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-s));
   filter: blur(var(--reveal-blur));
   transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+  will-change: opacity, transform, filter;
 }
 .reveal.visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   filter: blur(0);
+  will-change: auto;
 }
 .reveal.slide-left { --reveal-x: -40px; }
 .reveal.slide-right { --reveal-x: 40px; }
@@ -231,6 +236,7 @@ ul { list-style: none; }
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  contain: layout style;
 }
 
 .section-header {
@@ -263,6 +269,8 @@ ul { list-style: none; }
   pointer-events: none;
   filter: blur(120px);
   z-index: -1;
+  will-change: transform;
+  transform: translateZ(0);
 }
 .bg-shape-1 {
   width: 680px; height: 680px;
@@ -368,4 +376,39 @@ body[data-menu-open="true"] .bg-shape {
 
 @media (max-width: 480px) {
   .section { padding: 3rem 1rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE PERFORMANCE — GPU compositing + paint reduction
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Replace expensive filter:blur on reveal with opacity+transform only */
+  .reveal {
+    --reveal-blur: 0px;
+    --reveal-y: 20px;
+  }
+
+  /* Disable the drifting blurred orbs — huge fixed paint layer on mobile */
+  .bg-shape-1,
+  .bg-shape-2 {
+    animation: none;
+    display: none;
+  }
+
+  /* Noise overlay adds a repaint on every frame — hide on mobile */
+  .noise-overlay {
+    display: none;
+  }
+
+  /* Ambient grid is fine as static, remove expensive mask */
+  .ambient-grid {
+    mask-image: none;
+    -webkit-mask-image: none;
+    opacity: 0.12;
+  }
+
+  /* Force GPU compositing on all animated sections */
+  .section {
+    transform: translateZ(0);
+  }
 }

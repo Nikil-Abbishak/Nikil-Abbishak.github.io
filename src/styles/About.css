@@ -145,21 +145,53 @@
 @media (max-width: 1024px) {
   .about-container {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   .about-left,
   .about-right {
     grid-column: auto;
   }
   .about-traits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .about-quote-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 5rem 1.5rem;
+    min-height: auto;
+  }
+  .about-traits {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .about-title {
+    font-size: clamp(3rem, 12vw, 5rem);
+    text-align: center;
+  }
+  .about-intro {
+    text-align: center;
+    max-width: 100%;
+  }
+  .about-tabs {
+    justify-content: center;
   }
 }
 
 @media (max-width: 600px) {
+  .about-section {
+    padding: 4rem 1.2rem;
+  }
   .about-traits {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
   }
   .about-quote-card {
-    padding: 2.4rem 2rem;
+    padding: 2rem 1.5rem;
+  }
+  .about-quote {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
   }
 }

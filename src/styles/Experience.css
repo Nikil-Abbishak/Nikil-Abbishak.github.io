@@ -68,6 +68,7 @@
 @media (max-width: 900px) {
   .experience-track {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   .experience-track::before {
     left: 0;
@@ -76,5 +77,44 @@
   .experience-card:nth-child(odd),
   .experience-card:nth-child(even) {
     transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .experience-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  .experience-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile: cards slide in from sides and glow on org name */
+@media (max-width: 900px) {
+  .experience-card {
+    animation: expCardIn 0.7s var(--ease-out) both;
+  }
+
+  .experience-card:nth-child(odd) {
+    animation-delay: 0.1s;
+  }
+
+  .experience-card:nth-child(even) {
+    animation-delay: 0.25s;
+  }
+
+  @keyframes expCardIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .experience-org {
+    animation: orgGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes orgGlow {
+    0%, 100% { text-shadow: none; }
+    50% { text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.6); }
   }
 }
