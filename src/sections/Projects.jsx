@@ -10,7 +10,7 @@ const projects = [
     stack: ['Dart'],
     github: 'https://github.com/BinuraBimsara/SDGP-Project-V2',
     live: '#',
-    year: '2024',
+    year: '2025',
     role: 'Full Stack',
     accent: 'var(--accent)',
     accent2: 'var(--accent-warm)',
@@ -22,7 +22,7 @@ const projects = [
     stack: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/Nikil-Abbishak/Life-on-land---Web-Development-project',
     live: '#',
-    year: '2023',
+    year: '2025',
     role: 'Frontend',
     accent: 'var(--accent-warm)',
     accent2: 'var(--accent)',
@@ -34,7 +34,7 @@ const projects = [
     stack: ['Python', 'Tkinter'],
     github: 'https://github.com/Nikil-Abbishak/Task-Scheduler-using-Tkinter',
     live: '#',
-    year: '2023',
+    year: '2025',
     role: 'Backend',
     accent: 'var(--accent)',
     accent2: 'var(--accent-warm)',
@@ -46,7 +46,7 @@ const projects = [
     stack: ['Java', 'JAX-RS', 'REST'],
     github: 'https://github.com/Nikil-Abbishak/5COSC022W-SmartCampus-REST-service',
     live: '#',
-    year: '2023',
+    year: '2026',
     role: 'Backend',
     accent: 'var(--accent-warm)',
     accent2: 'var(--accent)',
@@ -58,7 +58,7 @@ const projects = [
     stack: ['JavaScript', 'HTML', 'CSS'],
     github: 'https://github.com/Nikil-Abbishak/Portfolioo-SAMPLE',
     live: 'https://nikil-abbishak.github.io/Portfolioo-SAMPLE/',
-    year: '2024',
+    year: '2026',
     role: 'Frontend',
     accent: 'var(--accent)',
     accent2: 'var(--accent-warm)',
@@ -70,7 +70,7 @@ const projects = [
     stack: ['Python'],
     github: 'https://github.com/Nikil-Abbishak/DecodeLabs-AI-Project1',
     live: '#',
-    year: '2024',
+    year: '2026',
     role: 'AI / Backend',
     accent: 'var(--accent-warm)',
     accent2: 'var(--accent)',
@@ -107,8 +107,8 @@ const ProjectRow = ({ project, index }) => {
     <div
       ref={rowRef}
       className={`project-row reveal ${index % 2 ? 'reverse slide-right' : 'slide-left'}`}
-      style={{ 
-        '--accent': project.accent, 
+      style={{
+        '--accent': project.accent,
         '--accent-2': project.accent2,
         transitionDelay: `${index * 0.1}s`
       }}
@@ -148,10 +148,10 @@ const ProjectRow = ({ project, index }) => {
 
 /* ── Mobile file-stack ── */
 function MobileFileStack() {
-  const [isExpanded, setIsExpanded]   = useState(false);  // click-to-expand list view
-  const [activeCard, setActiveCard]   = useState(null);   // detail overlay
-  const [isVisible, setIsVisible]     = useState(false);  // overlay open state
-  const deckRef                       = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(false);  // click-to-expand list view
+  const [activeCard, setActiveCard] = useState(null);   // detail overlay
+  const [isVisible, setIsVisible] = useState(false);  // overlay open state
+  const deckRef = useRef(null);
 
   /* ── Click/tap on the deck to expand ── */
   const onDeckClick = useCallback(() => {

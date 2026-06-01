@@ -28,9 +28,9 @@ function Footer() {
         </div>
         <div className="footer-actions">
           <div className="footer-links">
-            <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="mailto:email@example.com">Email</a>
+            <a href="https://github.com/Nikil-Abbishak" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/nikil-abbishake-302415325" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="nikilabbishake@gmail.com">Email</a>
           </div>
           <button className="back-to-top" onClick={scrollToTop} aria-label="Back to top">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

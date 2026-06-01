@@ -72,9 +72,6 @@
   display: block;
 }
 
-.hero-title-line.accent {
-  /* Color and shadow handled by char animation */
-}
 
 .hero-title .char {
   display: inline-block;

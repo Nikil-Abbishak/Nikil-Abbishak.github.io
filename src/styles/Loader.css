@@ -21,12 +21,10 @@
   gap: 1rem;
 }
 
-.loader-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-strong);
+.loader-signature {
+  height: clamp(10rem, 25vw, 18rem);
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
 }
 
 .loader-subtitle {

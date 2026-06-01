@@ -33,7 +33,7 @@ export default function Contact() {
           <div className="contact-cards">
             <div className="contact-card">
               <span className="card-label">Location</span>
-              <span className="card-value">India</span>
+              <span className="card-value">Sri Lanka</span>
             </div>
             <div className="contact-card">
               <span className="card-label">Availability</span>
@@ -49,10 +49,10 @@ export default function Contact() {
             <a href="https://github.com/Nikil-Abbishak" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
               GitHub
             </a>
-            <a href="https://linkedin.com/in/nikil-abbishak" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/nikil-abbishake-302415325" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
-            <a href="mailto:nikil@example.com" aria-label="Email">Email</a>
+            <a href="nikilabbishake@gmail.com" aria-label="Email">Email</a>
           </div>
         </div>
 
