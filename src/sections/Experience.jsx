@@ -3,28 +3,16 @@ import '../styles/Experience.css';
 
 const timeline = [
   {
-    date: '2024 — Present',
-    title: 'Fullstack Developer',
-    org: 'Freelance & Personal Projects',
-    desc: 'Shipping end-to-end products, from high-touch UI to scalable backends and integrations.',
-  },
-  {
-    date: '2023 — 2024',
-    title: 'React Developer',
-    org: 'Web Development Focus',
-    desc: 'Built dynamic, performant React applications with modern state management and API design.',
-  },
-  {
-    date: '2022 — 2023',
-    title: 'Mobile App Developer',
-    org: 'Flutter & Cross-Platform',
-    desc: 'Delivered cross-platform apps with polished animations and Firebase-powered backends.',
-  },
-  {
-    date: '2021 — Present',
-    title: 'Computer Science Student',
+    date: 'Jan 2025 — Present',
+    title: 'Computer Science Undergraduate',
     org: 'University',
-    desc: 'Focused on algorithms, systems, and emerging technologies while shipping real products.',
+    desc: 'Pursuing a degree in Computer Science, focusing on core programming concepts and software development.',
+  },
+  {
+    date: 'Jul 2024 — Mar 2025',
+    title: 'Process Associate',
+    org: 'Hcltech',
+    desc: 'Handled various operational processes, ensuring efficiency and quality.',
   },
 ];
 

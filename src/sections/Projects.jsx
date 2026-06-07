@@ -9,7 +9,7 @@ const projects = [
     desc: '2nd Year Software Dev Group Project Version 2.',
     stack: ['Dart'],
     github: 'https://github.com/BinuraBimsara/SDGP-Project-V2',
-    live: '#',
+    live: 'https://teamspotit.com.lk/',
     year: '2025',
     role: 'Full Stack',
     accent: 'var(--accent)',
@@ -134,9 +134,11 @@ const ProjectRow = ({ project, index }) => {
           ))}
         </div>
         <div className="project-links">
-          <a href={project.live} className="project-link" target="_blank" rel="noopener noreferrer">
-            <span>Case Study</span><ArrowIcon />
-          </a>
+          {project.live !== '#' && (
+            <a href={project.live} className="project-link" target="_blank" rel="noopener noreferrer">
+              <span>Case Study</span><ArrowIcon />
+            </a>
+          )}
           <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer">
             <span>Source</span><ArrowIcon />
           </a>
@@ -306,9 +308,11 @@ function MobileFileStack() {
             </div>
 
             <div className="fo-links">
-              <a href={activeCard.live} className="fo-link" target="_blank" rel="noopener noreferrer">
-                Case Study <ArrowIcon />
-              </a>
+              {activeCard.live !== '#' && (
+                <a href={activeCard.live} className="fo-link" target="_blank" rel="noopener noreferrer">
+                  Case Study <ArrowIcon />
+                </a>
+              )}
               <a href={activeCard.github} className="fo-link" target="_blank" rel="noopener noreferrer">
                 Source <ArrowIcon />
               </a>
