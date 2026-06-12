@@ -20,23 +20,23 @@
   --text-strong: #ffffff;
 
   /* Single accent — used sparingly */
-  --accent: #7B61FF;
-  --accent-rgb: 123, 97, 255;
-  --accent-soft: rgba(123, 97, 255, 0.15);
-  --accent-glow: rgba(123, 97, 255, 0.25);
-  --accent-warm: #E879F9;
-  --accent-warm-rgb: 232, 121, 249;
+  --accent: #E5B5A1;
+  --accent-rgb: 229, 181, 161;
+  --accent-soft: rgba(229, 181, 161, 0.15);
+  --accent-glow: rgba(229, 181, 161, 0.25);
+  --accent-warm: #F2CCB7;
+  --accent-warm-rgb: 242, 204, 183;
 
   /* Atmosphere */
-  --glow-1: radial-gradient(1200px 600px at 80% -10%, rgba(123, 97, 255, 0.12), transparent 60%);
-  --glow-2: radial-gradient(900px 500px at -10% 20%, rgba(232, 121, 249, 0.12), transparent 60%);
+  --glow-1: radial-gradient(1200px 600px at 80% -10%, rgba(229, 181, 161, 0.12), transparent 60%);
+  --glow-2: radial-gradient(900px 500px at -10% 20%, rgba(242, 204, 183, 0.12), transparent 60%);
   --glow-3: radial-gradient(900px 700px at 50% 120%, rgba(255, 255, 255, 0.04), transparent 70%);
-  --orb-1: rgba(123, 97, 255, 0.08);
-  --orb-2: rgba(232, 121, 249, 0.07);
+  --orb-1: rgba(229, 181, 161, 0.08);
+  --orb-2: rgba(242, 204, 183, 0.07);
 
   /* Gradients — only for key moments */
-  --gradient-accent: linear-gradient(135deg, #7B61FF, #A78BFA);
-  --gradient-warm: linear-gradient(135deg, #7B61FF, #E879F9);
+  --gradient-accent: linear-gradient(135deg, #E5B5A1, #F2CCB7);
+  --gradient-warm: linear-gradient(135deg, #F2CCB7, #FEE3D4);
   --gradient-aurora: linear-gradient(120deg, rgba(var(--accent-rgb), 0.25), rgba(var(--accent-warm-rgb), 0.18), rgba(255, 255, 255, 0));
 
   /* Typography */

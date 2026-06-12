@@ -188,15 +188,18 @@
   transform: translateY(0) translateZ(0);
   animation: heroFloat 10s ease-in-out infinite;
   will-change: transform;
+  --portrait-glow-inset: -30%;
+  --portrait-glow-blur: 40px;
+  --portrait-glow-opacity: 0.6;
 }
 
 .hero-portrait::before {
   content: '';
   position: absolute;
-  inset: -30%;
+  inset: var(--portrait-glow-inset);
   background: radial-gradient(circle, rgba(var(--accent-rgb), 0.35), transparent 60%);
-  opacity: 0.6;
-  filter: blur(40px);
+  opacity: var(--portrait-glow-opacity);
+  filter: blur(var(--portrait-glow-blur));
   z-index: 0;
   transform: translateZ(0);
 }
@@ -376,6 +379,9 @@
     box-shadow: var(--shadow-strong);
     animation: heroFloatAndZoom 14s ease-in-out infinite, heroPortraitIn 1s var(--ease-out);
     will-change: transform;
+    --portrait-glow-inset: -60%;
+    --portrait-glow-blur: 80px;
+    --portrait-glow-opacity: 0.95;
   }
   .hero-title {
     font-size: clamp(4.5rem, 15vw, 8rem);
@@ -463,6 +469,9 @@
   }
   .hero-portrait {
     width: min(220px, 60vw);
+    --portrait-glow-inset: -70%;
+    --portrait-glow-blur: 96px;
+    --portrait-glow-opacity: 1;
   }
   .hero-meta {
     grid-template-columns: 1fr 1fr;
