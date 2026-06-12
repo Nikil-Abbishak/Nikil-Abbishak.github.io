@@ -202,6 +202,20 @@
   filter: blur(var(--portrait-glow-blur));
   z-index: 0;
   transform: translateZ(0);
+  animation: portraitGlowLoop 4.8s ease-in-out infinite;
+}
+
+@keyframes portraitGlowLoop {
+  0%, 100% {
+    opacity: calc(var(--portrait-glow-opacity) * 0.7);
+    transform: translateZ(0) scale(0.98);
+    filter: blur(var(--portrait-glow-blur));
+  }
+  50% {
+    opacity: calc(var(--portrait-glow-opacity) * 1.05);
+    transform: translateZ(0) scale(1.06);
+    filter: blur(calc(var(--portrait-glow-blur) * 1.15));
+  }
 }
 
 .hero-portrait::after {
