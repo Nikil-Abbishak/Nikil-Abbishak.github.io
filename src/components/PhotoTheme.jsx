@@ -70,10 +70,11 @@ const hslToRgb = (h, s, l) => {
 const toRgb = ({ r, g, b }) => `rgb(${r}, ${g}, ${b})`;
 const toRgba = ({ r, g, b }, a) => `rgba(${r}, ${g}, ${b}, ${a})`;
 
-export default function PhotoTheme({ src = './profile.png' }) {
+export default function PhotoTheme({ src = '/profile.png' }) {
   useEffect(() => {
     let cancelled = false;
     const img = new Image();
+    img.decoding = 'async';
     img.src = src;
     img.crossOrigin = 'anonymous';
 

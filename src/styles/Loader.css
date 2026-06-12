@@ -1,7 +1,9 @@
 .loader {
   position: fixed;
   inset: 0;
-  background: var(--bg-primary);
+  background:
+    radial-gradient(900px 500px at 50% 30%, rgba(255, 255, 255, 0.04), transparent 65%),
+    #05060b;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,6 +26,7 @@
 .loader-signature {
   height: clamp(10rem, 25vw, 18rem);
   object-fit: contain;
+  width: auto;
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
 }
 

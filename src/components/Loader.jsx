@@ -24,7 +24,14 @@ export default function Loader({ onComplete }) {
   return (
     <div className={`loader ${exiting ? 'exit' : ''}`} role="status" aria-label="Loading">
       <div className="loader-inner">
-        <img src="/signature.png?v=2" alt="Signature" className="loader-signature" />
+        <img
+          src="/signature.png?v=2"
+          alt="Signature"
+          className="loader-signature"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         <div className="loader-subtitle">Initializing experience</div>
         <div className="loader-line-track">
           <div className="loader-line" style={{ transform: `scaleX(${progress / 100})` }} />

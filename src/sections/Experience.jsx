@@ -3,13 +3,13 @@ import '../styles/Experience.css';
 
 const timeline = [
   {
-    date: 'Jan 2025 — Present',
+    date: 'Jan 2025 - Present',
     title: 'Computer Science Undergraduate',
-    org: 'University',
+    org: 'University of Westminster',
     desc: 'Pursuing a degree in Computer Science, focusing on core programming concepts and software development.',
   },
   {
-    date: 'Jul 2024 — Mar 2025',
+    date: 'Jul 2024 - Mar 2025',
     title: 'Process Associate',
     org: 'Hcltech',
     desc: 'Handled various operational processes, ensuring efficiency and quality.',

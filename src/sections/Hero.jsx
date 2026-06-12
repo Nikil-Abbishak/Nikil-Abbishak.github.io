@@ -3,6 +3,8 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import useMagnetic from '../hooks/useMagnetic';
 import '../styles/Hero.css';
 
+const profileImageSrc = '/profile.png';
+
 const splitText = (text, className) => (
   <span className={className} aria-label={text}>
     {text.split('').map((char, index) => (
@@ -20,20 +22,28 @@ export default function Hero() {
   const secondaryCtaRef = useMagnetic(0.18);
 
   useEffect(() => {
-    const extensions = ['jpg', 'png', 'webp', 'jpeg'];
-    let resolved = false;
+    let cancelled = false;
+    const img = new Image();
+    img.decoding = 'async';
+    img.fetchPriority = 'high';
 
-    extensions.forEach((ext) => {
-      const src = `./profile.${ext}`;
-      const img = new Image();
-      img.onload = () => {
-        if (!resolved) {
-          resolved = true;
-          setPhotoUrl(src);
-        }
-      };
-      img.src = src;
-    });
+    img.onload = () => {
+      if (!cancelled) {
+        setPhotoUrl(profileImageSrc);
+      }
+    };
+
+    img.onerror = () => {
+      if (!cancelled) {
+        setPhotoUrl(profileImageSrc);
+      }
+    };
+
+    img.src = profileImageSrc;
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
@@ -95,7 +105,7 @@ export default function Hero() {
         <div className="hero-right">
           <div className="hero-portrait">
             {photoUrl ? (
-              <img src={photoUrl} alt="Nikil Abbishak" />
+              <img src={photoUrl} alt="Nikil Abbishak" loading="eager" decoding="async" fetchPriority="high" />
             ) : (
               <div className="hero-portrait-placeholder">
                 <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
