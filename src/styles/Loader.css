@@ -1,9 +1,7 @@
 .loader {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(900px 500px at 50% 30%, rgba(255, 255, 255, 0.04), transparent 65%),
-    #05060b;
+  background: var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;

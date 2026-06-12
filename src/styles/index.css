@@ -6,37 +6,37 @@
 
 :root {
   /* Backgrounds */
-  --bg-primary: #05060b;
-  --bg-elevated: #0a0d14;
-  --bg-card: rgba(255, 255, 255, 0.035);
-  --bg-card-hover: rgba(255, 255, 255, 0.06);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.16);
+  --bg-primary: #08080c;
+  --bg-elevated: #0f0f14;
+  --bg-card: rgba(255, 255, 255, 0.02);
+  --bg-card-hover: rgba(255, 255, 255, 0.04);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
 
   /* Typography colors */
-  --text-primary: #eef1f6;
-  --text-secondary: #b3b9c6;
-  --text-muted: #6f7686;
+  --text-primary: #f0f0f3;
+  --text-secondary: #8a8a9a;
+  --text-muted: #4a4a58;
   --text-strong: #ffffff;
 
   /* Single accent — used sparingly */
-  --accent: #67e8f9;
-  --accent-rgb: 103, 232, 249;
-  --accent-soft: rgba(103, 232, 249, 0.18);
-  --accent-glow: rgba(103, 232, 249, 0.35);
-  --accent-warm: #fbbf24;
-  --accent-warm-rgb: 251, 191, 36;
+  --accent: #7B61FF;
+  --accent-rgb: 123, 97, 255;
+  --accent-soft: rgba(123, 97, 255, 0.15);
+  --accent-glow: rgba(123, 97, 255, 0.25);
+  --accent-warm: #E879F9;
+  --accent-warm-rgb: 232, 121, 249;
 
   /* Atmosphere */
-  --glow-1: radial-gradient(1200px 600px at 80% -10%, rgba(103, 232, 249, 0.12), transparent 60%);
-  --glow-2: radial-gradient(900px 500px at -10% 20%, rgba(251, 191, 36, 0.12), transparent 60%);
+  --glow-1: radial-gradient(1200px 600px at 80% -10%, rgba(123, 97, 255, 0.12), transparent 60%);
+  --glow-2: radial-gradient(900px 500px at -10% 20%, rgba(232, 121, 249, 0.12), transparent 60%);
   --glow-3: radial-gradient(900px 700px at 50% 120%, rgba(255, 255, 255, 0.04), transparent 70%);
-  --orb-1: rgba(103, 232, 249, 0.08);
-  --orb-2: rgba(251, 191, 36, 0.07);
+  --orb-1: rgba(123, 97, 255, 0.08);
+  --orb-2: rgba(232, 121, 249, 0.07);
 
   /* Gradients — only for key moments */
-  --gradient-accent: linear-gradient(135deg, #67e8f9, #22d3ee);
-  --gradient-warm: linear-gradient(135deg, #fbbf24, #f97316);
+  --gradient-accent: linear-gradient(135deg, #7B61FF, #A78BFA);
+  --gradient-warm: linear-gradient(135deg, #7B61FF, #E879F9);
   --gradient-aurora: linear-gradient(120deg, rgba(var(--accent-rgb), 0.25), rgba(var(--accent-warm-rgb), 0.18), rgba(255, 255, 255, 0));
 
   /* Typography */
