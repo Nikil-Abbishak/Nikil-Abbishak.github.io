@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import useMagnetic from '../hooks/useMagnetic';
 import '../styles/Hero.css';
 
-const profileImageSrc = '/profile.png';
+const profileImageSrc = '/profile.webp';
 
 const splitText = (text, className) => (
   <span className={className} aria-label={text}>
@@ -17,34 +16,8 @@ const splitText = (text, className) => (
 
 export default function Hero() {
   const sectionRef = useScrollReveal();
-  const [photoUrl, setPhotoUrl] = useState(null);
   const primaryCtaRef = useMagnetic(0.22);
   const secondaryCtaRef = useMagnetic(0.18);
-
-  useEffect(() => {
-    let cancelled = false;
-    const img = new Image();
-    img.decoding = 'async';
-    img.fetchPriority = 'high';
-
-    img.onload = () => {
-      if (!cancelled) {
-        setPhotoUrl(profileImageSrc);
-      }
-    };
-
-    img.onerror = () => {
-      if (!cancelled) {
-        setPhotoUrl(profileImageSrc);
-      }
-    };
-
-    img.src = profileImageSrc;
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   return (
     <section className="hero" id="hero" ref={sectionRef}>
@@ -104,16 +77,10 @@ export default function Hero() {
 
         <div className="hero-right">
           <div className="hero-portrait">
-            {photoUrl ? (
-              <img src={photoUrl} alt="Nikil Abbishak" loading="eager" decoding="async" fetchPriority="high" />
-            ) : (
-              <div className="hero-portrait-placeholder">
-                <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-            )}
+            <picture>
+              <source srcSet={profileImageSrc} type="image/webp" />
+              <img src="/profile.png" alt="Nikil Abbishak" loading="eager" decoding="async" fetchPriority="high" />
+            </picture>
           </div>
         </div>
       </div>

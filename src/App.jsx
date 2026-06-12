@@ -2,7 +2,6 @@ import { useState, useCallback, useEffect } from 'react';
 import Lenis from 'lenis';
 import SplashCursor from './components/SplashCursor';
 import MouseGlow from './components/MouseGlow';
-import PhotoTheme from './components/PhotoTheme';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
@@ -100,7 +99,6 @@ export default function App() {
     <>
       {!loaded && <Loader onComplete={handleLoaded} />}
 
-      <PhotoTheme />
       <MouseGlow />
       <SplashCursor />
       <ScrollProgress />
